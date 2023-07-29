@@ -7,7 +7,6 @@ const Selection = () => {
     const handleSubmit = (e: React.SyntheticEvent) => {
         e.preventDefault();
         console.log("submit");
-        
     }
 
     return (
