@@ -1,11 +1,16 @@
-//import { useState } from 'react'
 import './App.css'
+import Footer from './components/Footer'
+import Games from './components/Games'
+import Hero from './components/Hero'
+import Selection from './components/Selection'
 
 function App() {
-
   return (
     <>
-      <h1 className="text-5xl font-bold">Vite/React-TS/Tailwind/DaisyUI Boilerplate</h1>
+      <Hero />
+      <Selection />
+      <Games />
+      <Footer />
     </>
   )
 }
