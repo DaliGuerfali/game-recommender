@@ -6,13 +6,13 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:4000',
+      '/api': 'http://localhost:4000/api',
     },
   },
   optimizeDeps: {
     exclude: ['express'],
   },
   build: {
-    outDir: 'dist', // Match the "outDir" in tsconfig.json
+    outDir: 'dist',
   },
 })
