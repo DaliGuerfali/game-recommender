@@ -9,6 +9,7 @@ import ResetButton from "./Selection/ResetButton";
 import Platform from "./Selection/Platform";
 import Progress from "./Selection/Progress";
 import SubmitButton from "./Selection/SubmitButton";
+import gameService from "../gameService";
 
 
 const Selection = forwardRef((_props, ref: React.ForwardedRef<HTMLFormElement>)  => {
@@ -18,11 +19,14 @@ const Selection = forwardRef((_props, ref: React.ForwardedRef<HTMLFormElement>) 
     const [steps, setSteps] = useState<StepState<0 | 1>>([0,0])
     const [platform, setPlatform] = useState<PlatformType>("PC")
 
-    const handleSubmit = (e: React.SyntheticEvent) => {
+    const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         setSteps([1,1])
         console.log(tags);
         console.log(platform);
+        const response = await gameService.getAll()
+        console.log(response);
+        
     }
 
     const changeTags = (e: React.ChangeEvent<HTMLInputElement>) => {
