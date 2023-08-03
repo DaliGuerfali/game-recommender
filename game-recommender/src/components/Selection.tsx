@@ -13,15 +13,15 @@ interface selectionProps {
 }
 
 
-const Selection = forwardRef(({ setGames }: selectionProps, ref: React.ForwardedRef<HTMLFormElement>)  => {
-    const [steps, setSteps] = useState<StepState<0 | 1>>([0,0])
+const Selection = forwardRef(({ setGames }: selectionProps, ref: React.ForwardedRef<HTMLFormElement>) => {
+    const [steps, setSteps] = useState<StepState<0 | 1>>([0, 0])
     const [tags, setTags] = useState<TagType[]>([])
     const [platform, setPlatform] = useState<PlatformType>("PC")
 
-    
+
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        setSteps([1,1])
+        setSteps([1, 1])
         const games = await gameService.getGenres(tags, platform)
         setGames(games)
     }
@@ -31,21 +31,21 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
             setTags(tags.concat(e.target.value as TagType))
             return
         }
-        setTags(tags.filter(tag => tag !== e.target.value))   
+        setTags(tags.filter(tag => tag !== e.target.value))
     }
 
     const resetSelection = () => {
-        setSteps([0,0])
+        setSteps([0, 0])
     }
 
 
     const selectPlatform = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSteps([1,0])
+        setSteps([1, 0])
         setPlatform(e.target.value as PlatformType)
     }
 
     return (
-        <form  ref={ref} onSubmit={handleSubmit} className="flex flex-col items-center gap-10 w-full min-h-screen mb-5" >
+        <form ref={ref} onSubmit={handleSubmit} className="flex flex-col items-center gap-10 w-full min-h-screen mb-5" >
             <Steps steps={steps} />
             <ResetButton resetSelection={resetSelection} />
             <Platform steps={steps} selectPlatform={selectPlatform} />

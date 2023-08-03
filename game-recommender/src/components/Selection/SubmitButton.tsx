@@ -7,7 +7,7 @@ interface submitBtnProps {
 
 const SubmitButton = ({ steps }: submitBtnProps) => {
     return (
-        <button className={`btn btn-primary ${!steps[0] ? 'invisible opacity-0' : ''} transition-all`} type="submit">Recommend</button>
+        <button className={`btn btn-success ${!steps[0] ? 'invisible opacity-0' : ''} transition-all`} type="submit">Recommend</button>
     )
 }
 

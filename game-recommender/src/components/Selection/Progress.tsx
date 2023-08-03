@@ -8,8 +8,8 @@ interface progressProps {
 const Progress = ({ steps }: progressProps) => {
 
     const toPercent = (steps: StepState<0 | 1>) => {
-        const stepsComplete = steps.reduce((a:number ,b) => a + b, 0)
-        return String((stepsComplete/steps.length)*100)
+        const stepsComplete = steps.reduce((a: number, b) => a + b, 0)
+        return String((stepsComplete / steps.length) * 100)
     }
 
     return (

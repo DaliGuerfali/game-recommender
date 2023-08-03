@@ -8,17 +8,17 @@ import { GameInfo } from './types'
 
 function App() {
   const selectionRef = useRef<HTMLFormElement>(null!);
-  const [games, setGames] = useState<GameInfo[]>([])     
+  const [games, setGames] = useState<GameInfo[] | null>(null)
 
 
 
   const scrollToSelection = () => {
-      selectionRef.current.scrollIntoView()
+    selectionRef.current.scrollIntoView()
   }
 
   return (
     <>
-      <Hero scrollToSelection={scrollToSelection}/>
+      <Hero scrollToSelection={scrollToSelection} />
       <Selection setGames={setGames} ref={selectionRef} />
       <Games games={games} />
       <Footer />

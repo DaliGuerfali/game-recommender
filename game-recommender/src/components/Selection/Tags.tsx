@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { StepState } from "../../types"
 import { tags } from "../../utils"
- 
+
 interface tagsProps {
     tagHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
     steps: StepState<0 | 1>
@@ -9,7 +9,7 @@ interface tagsProps {
 
 
 
-const capitalize = (str: string): string => str[0].toUpperCase() + str.slice(1) 
+const capitalize = (str: string): string => str[0].toUpperCase() + str.slice(1)
 
 const Tags = ({ tagHandler, steps }: tagsProps) => {
     const [filter, setFilter] = useState<string[]>(tags.split(","))
@@ -17,12 +17,12 @@ const Tags = ({ tagHandler, steps }: tagsProps) => {
     const filterTags = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilter(tags.split(",").filter(tag => tag.includes(e.target.value)))
     }
-    
+
     return (
-        <div className={`flex items-start gap-5 min-w-full p-10 pt-0 flex-col sm:flex-row-reverse ${ !steps[0] ? 'invisible opacity-0' : ''} transition-all`}>
+        <div className={`flex items-start gap-5 min-w-full p-10 pt-0 flex-col sm:flex-row-reverse ${!steps[0] ? 'invisible opacity-0' : ''} transition-all`}>
             <input onChange={filterTags} type="text" placeholder="Search" className="input input-bordered input-secondary w-full max-w-xs mt-2" />
             <div className="divider divider-vertical sm:divider-horizontal"></div>
-            <div className="collapse collapse-arrow bg-base-200 ">
+            <div className="collapse collapse-arrow bg-base-200 border-2 border-accent">
                 <input type="checkbox" className="peer" />
                 <div className="collapse-title bg-primary text-primary-content peer-checked:bg-gradient-to-b from-base-300 to-base-200 peer-checked:text-secondary-content">
                     <h2 className="text-2xl font-bold" >Genres</h2>

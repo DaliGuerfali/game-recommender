@@ -11,7 +11,6 @@ const Platform = ({ steps, selectPlatform }: platformProps) => {
             <select onChange={selectPlatform} id="step-1" className={`select select-bordered w-full max-w-xs ${steps[0] ? 'invisible opacity-0' : ''} transition-all`} defaultValue="Platform">
                 <option value="Platform" disabled>Platform</option>
                 <option value="PC">PC</option>
-                <option value="Console" >Console</option>
                 <option value="Browser" >Browser</option>
             </select>
         </div>

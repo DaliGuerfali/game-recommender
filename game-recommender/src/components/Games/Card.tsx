@@ -11,8 +11,8 @@ const Card = ({ game }: cardProps) => {
             <div className="card-body">
                 <h2 className="card-title">
                     {game.title}
-                    <div className="badge badge-secondary">
-                        {game.platform.includes("PC") ? <svg  className="h-4 w-4" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+                    <div className="badge badge-warning">
+                        {game.platform === "PC (Windows)" ? <svg className="h-4 w-4" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
                             <title>Platform: PC </title>
                             <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
                                 <g transform="translate(-60.000000, -7439.000000)" fill="currentColor">
@@ -24,10 +24,11 @@ const Card = ({ game }: cardProps) => {
                         </svg> : "Browser"}
                     </div>
                 </h2>
-                <p>{game.description}</p>
+                <p className="p-2">{game.short_description}</p>
                 <div className="card-actions justify-end">
-                    <div className="badge badge-outline">{game.developer}</div>
-                    <div className="badge badge-outline">{game.release_date}</div>
+                    <div className="badge badge-outline badge-success">{game.genre}</div>
+                    <div className="badge badge-outline badge-accent">{game.developer}</div>
+                    <div className="badge badge-outline badge-error ">{game.release_date}</div>
                 </div>
             </div>
         </a>
