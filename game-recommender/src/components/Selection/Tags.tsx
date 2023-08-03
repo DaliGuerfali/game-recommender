@@ -19,7 +19,7 @@ const Tags = ({ tagHandler, steps }: tagsProps) => {
     }
     
     return (
-        <div className={`flex items-start gap-5 min-w-full p-10 pt-0 flex-col sm:flex-row-reverse ${ !steps[0] ? 'hidden' : ''}`}>
+        <div className={`flex items-start gap-5 min-w-full p-10 pt-0 flex-col sm:flex-row-reverse ${ !steps[0] ? 'invisible opacity-0' : ''} transition-all`}>
             <input onChange={filterTags} type="text" placeholder="Search" className="input input-bordered input-secondary w-full max-w-xs mt-2" />
             <div className="divider divider-vertical sm:divider-horizontal"></div>
             <div className="collapse collapse-arrow bg-base-200 ">
