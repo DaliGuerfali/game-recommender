@@ -10,7 +10,7 @@ const getAll = async () => {
 }
 
 const getGenres = async (tags: TagType[], plaform: PlatformType) => {
-    const response = await axios.get(`${baseUrl}/filter?tag=${tags.join(".")}&platform=${plaform.toLowerCase()}`)
+    const response = await axios.get(`${baseUrl}/filter?tag=${tags.join(".")}&platform=${plaform?.toLowerCase()}`)
     return response.data
 }
 

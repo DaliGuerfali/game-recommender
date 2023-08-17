@@ -15,7 +15,7 @@ interface selectionProps {
 const Selection = forwardRef(({ setGames }: selectionProps, ref: React.ForwardedRef<HTMLFormElement>) => {
     const [steps, setSteps] = useState<StepState<0 | 1>>([0, 0])
     const [tags, setTags] = useState<TagType[]>([])
-    const [platform, setPlatform] = useState<PlatformType>("PC")
+    const [platform, setPlatform] = useState<PlatformType>(null)
 
 
     const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -35,6 +35,8 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
 
     const resetSelection = () => {
         setSteps([0, 0])
+        setPlatform(null)
+        setTags([])
     }
 
 
@@ -49,7 +51,7 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
             <ResetButton resetSelection={resetSelection} />
             {
                 !steps[0] ? 
-                <Platform  selectPlatform={selectPlatform} />
+                <Platform  platform={platform} selectPlatform={selectPlatform} />
                 :
                 <Tags tagHandler={changeTags} />
             }
