@@ -4,7 +4,11 @@ import daisyui from "daisyui";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'animate-fade-in': 'fade-in 0.5s ease-in-out'
+      }
+    },
   },
   daisyui: {
     themes: [

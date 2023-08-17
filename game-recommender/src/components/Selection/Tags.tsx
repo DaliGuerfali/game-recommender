@@ -1,17 +1,15 @@
 import { useState } from "react"
-import { StepState } from "../../types"
 import { tags } from "../../utils"
 
 interface tagsProps {
     tagHandler: (e: React.ChangeEvent<HTMLInputElement>) => void
-    steps: StepState<0 | 1>
 }
 
 
 
 const capitalize = (str: string): string => str[0].toUpperCase() + str.slice(1)
 
-const Tags = ({ tagHandler, steps }: tagsProps) => {
+const Tags = ({ tagHandler }: tagsProps) => {
     const [filter, setFilter] = useState<string[]>(tags.split(","))
 
     const filterTags = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,7 +17,7 @@ const Tags = ({ tagHandler, steps }: tagsProps) => {
     }
 
     return (
-        <div className={`flex items-start gap-5 min-w-full p-10 pt-0 flex-col sm:flex-row-reverse ${!steps[0] ? 'invisible opacity-0' : ''} transition-all`}>
+        <div className={`flex items-start gap-5 min-w-full p-10 pt-0 flex-col sm:flex-row-reverse animate-animate-fade-in`}>
             <input onChange={filterTags} type="text" placeholder="Search" className="input input-bordered input-secondary w-full max-w-xs mt-2" />
             <div className="divider divider-vertical sm:divider-horizontal"></div>
             <div className="collapse collapse-arrow bg-base-200 border-2 border-accent">

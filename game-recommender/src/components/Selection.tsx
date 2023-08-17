@@ -4,7 +4,6 @@ import Steps from "./Selection/Steps";
 import { GameInfo, PlatformType, StepState, TagType } from "../types";
 import ResetButton from "./Selection/ResetButton";
 import Platform from "./Selection/Platform";
-import Progress from "./Selection/Progress";
 import SubmitButton from "./Selection/SubmitButton";
 import gameService from "../gameService";
 
@@ -45,12 +44,15 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
     }
 
     return (
-        <form ref={ref} onSubmit={handleSubmit} className="flex flex-col items-center gap-10 w-full min-h-screen mb-5" >
+        <form ref={ref} onSubmit={handleSubmit} className="flex flex-col items-center gap-10 w-full min-h-screen mb-5 justify-evenly " >
             <Steps steps={steps} />
             <ResetButton resetSelection={resetSelection} />
-            <Platform steps={steps} selectPlatform={selectPlatform} />
-            <Tags tagHandler={changeTags} steps={steps} />
-            <Progress steps={steps} />
+            {
+                !steps[0] ? 
+                <Platform  selectPlatform={selectPlatform} />
+                :
+                <Tags tagHandler={changeTags} />
+            }
             <SubmitButton steps={steps} />
         </form>
     )
