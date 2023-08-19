@@ -6,6 +6,8 @@ import ResetButton from "./Selection/ResetButton";
 import Platform from "./Selection/Platform";
 import SubmitButton from "./Selection/SubmitButton";
 import gameService from "../gameService";
+import { AxiosError } from "axios";
+import { notify, useDispatchNotif } from "../Context/NotificationContext";
 
 interface selectionProps {
     setGames: (arg: GameInfo[]) => void
@@ -16,13 +18,25 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
     const [steps, setSteps] = useState<StepState<0 | 1>>([0, 0])
     const [tags, setTags] = useState<TagType[]>([])
     const [platform, setPlatform] = useState<PlatformType>(null)
-
+    const dispatch = useDispatchNotif();
 
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
         setSteps([1, 1])
-        const games = await gameService.getGenres(tags, platform)
-        setGames(games)
+        try {
+            const games = await gameService.getGenres(tags, platform)
+            setGames(games)
+        } catch(e) {
+            if(e instanceof AxiosError) {
+                if (e.response?.status === 500) {
+                    dispatch(notify({ message: "Something went wrong... Please try again later.", class: "error" }))
+                } else if (e.response?.status === 400) {
+                    dispatch(notify({ message: "Please select at least one category.", class: "warning" }))
+                }
+                // eslint-disable-next-line no-console
+                console.log(e.message);
+            }
+        }
     }
 
     const changeTags = (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -14,7 +14,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['express'],
+    exclude: ['express', 'dotenv'],
   },
   build: {
     outDir: 'dist',

@@ -3,10 +3,10 @@ import express from 'express'
 import f2pApiProxy from './controllers/f2pApiProxy.js'
 
 const app = express()
-const port = 4000
+const port = process.env.PORT || 4000
 
+app.use(express.static("dist"))
 app.use(express.json())
-
 
 app.get('/api', (_req, res) => {
   res.send("ok")

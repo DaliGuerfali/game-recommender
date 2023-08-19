@@ -1,28 +1,15 @@
-import axios from "axios"
+import axios, { AxiosError } from "axios"
 import { Router } from "express"
 
 const f2pApiProxy = Router()
 
 
-f2pApiProxy.get('/games', async (_req, res) => {
-    try {
-        const response = await axios
-            .get('https://free-to-play-games-database.p.rapidapi.com/api/games', {
-                headers: {
-                    'X-RapidAPI-Key': process.env.F2P_API_KEY,
-                    'X-RapidAPI-Host': 'free-to-play-games-database.p.rapidapi.com'
-                }
-            })
-        res.json(response.data)
-    } catch (e) {
-        console.log(e);
-        res.status(500).end()
-    }
-})
-
-
 f2pApiProxy.get('/filter', async (req, res) => {
     console.log(req.query);
+    if(req.query.tag === '' || req.query.tag === '') {
+        res.status(400).json({ Error: "Bad Request" })
+        return
+    }
     try {
         const response = await axios
             .get('https://free-to-play-games-database.p.rapidapi.com/api/filter', {
@@ -38,8 +25,10 @@ f2pApiProxy.get('/filter', async (req, res) => {
             res.json(response.data)
         }
     } catch (e) {
-        console.log(e);
-        res.status(500).end()
+        if(e instanceof AxiosError) {
+            console.log(e.message);
+            res.status(500).end()
+        }
     }
 })
 

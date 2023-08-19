@@ -14,7 +14,7 @@ const Footer = () => {
                     <a href="https://github.com/DaliGuerfali">
                         <GithubSVG />
                     </a>
-                    <a href="www.linkedin.com/in/mohamed-ali-guerfali-489234272" >
+                    <a href="https://linkedin.com/in/mohamed-ali-guerfali-489234272" >
                         <LinkedInSVG />
                     </a>
                 </div>

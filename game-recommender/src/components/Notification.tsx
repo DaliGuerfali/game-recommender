@@ -1,7 +1,6 @@
 import { useContext } from "react"
 import NotifContext, { clearNotif } from "../Context/NotificationContext"
 import ErrorNotif from "./Notification/ErrorNotif"
-import SuccessNotif from "./Notification/SuccessNotif"
 import WarningNotif from "./Notification/WarningNotif"
 
 const Notification = () => {
@@ -21,8 +20,6 @@ const Notification = () => {
         switch (notif.class) {
             case "error":
                 return <ErrorNotif message={notif.message} />
-            case "success":
-                return <SuccessNotif message={notif.message} />
             case "warning":
                 return <WarningNotif message={notif.message} />
             default:
