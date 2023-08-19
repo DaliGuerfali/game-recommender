@@ -5,6 +5,7 @@ import Games from './components/Games'
 import Hero from './components/Hero'
 import Selection from './components/Selection'
 import { GameInfo } from './types'
+import Notification from './components/Notification'
 
 function App() {
   const selectionRef = useRef<HTMLFormElement>(null!);
@@ -19,6 +20,7 @@ function App() {
   return (
     <>
       <Hero scrollToSelection={scrollToSelection} />
+      <Notification />
       <Selection setGames={setGames} ref={selectionRef} />
       <Games games={games} />
       <Footer />
