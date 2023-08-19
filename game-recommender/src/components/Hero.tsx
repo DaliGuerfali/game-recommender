@@ -1,4 +1,4 @@
-import ControllerSVG from "./Hero/ControllerSVG"
+import ControllerSVG from "./SVG/ControllerSVG"
 
 interface heroProps {
     scrollToSelection: () => void
