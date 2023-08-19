@@ -1,6 +1,6 @@
 const ControllerSVG = () => {
     return (
-        <svg style={{ maxHeight: '95vh', maxWidth: '95vw'}} className="max-h-screen max-w-screen z-0 opacity-20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585.85 380.38">
+        <svg style={{ maxHeight: '95vh', maxWidth: '95vw'}} className="max-h-screen max-w-screen z-0 opacity-10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 585.85 380.38">
           <defs>
             <style>
               {

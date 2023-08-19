@@ -10,3 +10,11 @@
     opacity: 1;
   }
 }
+
+.scroll-btn {
+  display: none !important;
+}
+
+.scroll-btn.visible {
+  display: inline-flex !important;
+}

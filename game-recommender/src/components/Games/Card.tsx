@@ -7,11 +7,11 @@ interface cardProps {
 
 const Card = ({ game }: cardProps) => {
     return (
-        <a href={game.game_url} className="card max-w-sm bg-neutral shadow-xl hover:scale-105 cursor-pointer transition-all">
+        <div className="card max-w-sm bg-neutral shadow-xl hover:scale-105 transition-all">
             <figure><img className="min-w-full" src={game.thumbnail} alt={`${game.title} image`} loading="lazy" /></figure>
             <div className="card-body">
                 <h2 className="card-title">
-                    {game.title}
+                    <a className="hover:underline" href={game.game_url} >{game.title}</a>
                     <PlatformBadge platform={game.platform} />
                 </h2>
                 <p className="p-2">{game.short_description}</p>
@@ -21,7 +21,7 @@ const Card = ({ game }: cardProps) => {
                     <div className="badge badge-outline badge-error ">{game.release_date}</div>
                 </div>
             </div>
-        </a>
+        </div>
     )
 }
 

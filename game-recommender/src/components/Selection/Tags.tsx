@@ -28,7 +28,7 @@ const Tags = ({ tagHandler }: tagsProps) => {
                 <div id="step-2" style={{ maxHeight: '50vh' }} className="collapse-content bg-primary text-primary-content peer-checked:bg-base-200 peer-checked:text-secondary-content overflow-y-auto max-h-screen">
 
                     {
-                        filter.map(tag => {
+                        filter.sort().map(tag => {
                             return (
                                 <label key={tag} className="cursor-pointer label hover:bg-base-100 rounded p-3">
                                     <span className="label-text">{capitalize(tag.trim())}</span>
