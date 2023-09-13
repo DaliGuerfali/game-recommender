@@ -10,21 +10,26 @@ import ScrollButton from './components/ScrollButton'
 
 function App() {
   const selectionRef = useRef<HTMLFormElement>(null!);
+  const gamesRef = useRef<HTMLDivElement>(null!);
   const [games, setGames] = useState<GameInfo[] | null>(null)
-
+  const [loading, setLoading] = useState(false)
 
 
   const scrollToSelection = () => {
     selectionRef.current.scrollIntoView()
   }
 
+  const scrollToGames = () => {
+    gamesRef.current.scrollIntoView()
+  }
+
   return (
     <>
       <Hero scrollToSelection={scrollToSelection} />
       <Notification />
-      <Selection setGames={setGames} ref={selectionRef} />
+      <Selection setGames={setGames} setLoading={setLoading} scrollToGames={scrollToGames} ref={selectionRef} />
       <ScrollButton scroll={scrollToSelection} />
-      <Games games={games} />
+      <Games ref={gamesRef} games={games} loading={loading} setLoading={setLoading} />
       <Footer />
     </>
   )

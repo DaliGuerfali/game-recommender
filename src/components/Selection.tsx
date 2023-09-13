@@ -11,10 +11,12 @@ import { notify, useDispatchNotif } from "../Context/NotificationContext";
 
 interface selectionProps {
     setGames: (arg: GameInfo[]) => void
+    setLoading: (arg: boolean) => void
+    scrollToGames: () => void
 }
 
 
-const Selection = forwardRef(({ setGames }: selectionProps, ref: React.ForwardedRef<HTMLFormElement>) => {
+const Selection = forwardRef(({ setGames, setLoading, scrollToGames }: selectionProps, ref: React.ForwardedRef<HTMLFormElement>) => {
     const [steps, setSteps] = useState<StepState<0 | 1>>([0, 0])
     const [tags, setTags] = useState<TagType[]>([])
     const [platform, setPlatform] = useState<PlatformType>(null)
@@ -22,10 +24,15 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
 
     const handleSubmit = async (e: React.SyntheticEvent) => {
         e.preventDefault();
-        setSteps([1, 1])
+        if(tags.length === 0) return
+        setLoading(true)
         try {
             const games = await gameService.getGenres(tags, platform)
             setGames(games)
+            resetSelection()
+            setTimeout(() => {
+                scrollToGames()
+            }, 750);
         } catch(e) {
             if(e instanceof AxiosError) {
                 if (e.response?.status === 500) {
@@ -36,9 +43,10 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
                 // eslint-disable-next-line no-console
                 console.log(e.message);
             }
+            setLoading(false)
         }
     }
-
+    
     const changeTags = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.checked) {
             setTags(tags.concat(e.target.value as TagType))
@@ -52,13 +60,13 @@ const Selection = forwardRef(({ setGames }: selectionProps, ref: React.Forwarded
         setPlatform(null)
         setTags([])
     }
-
-
+    
+    
     const selectPlatform = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSteps([1, 0])
         setPlatform(e.target.value as PlatformType)
+        setSteps([1, 1])
     }
-
+    
     return (
         <form ref={ref} onSubmit={handleSubmit} className="flex flex-col items-center gap-10 w-full min-h-screen mb-5 justify-evenly " >
             <Steps steps={steps} />

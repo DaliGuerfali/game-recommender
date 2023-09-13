@@ -4,7 +4,7 @@ interface dateFilterProps {
 
 const DateFilter = ({ filterDate }: dateFilterProps) => {
     return (
-        <div className="container flex justify-evenly p-5">
+        <div className="w-full flex justify-evenly p-5">
             <div className="flex flex-col max-w-xs gap-2 flex-1" >
                 <label htmlFor="date-filter">Filter by Date:</label>
                 <input onChange={filterDate} id="date-filter" type="range" max="100" defaultValue="100" className="range" />
