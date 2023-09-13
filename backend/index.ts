@@ -9,7 +9,7 @@ app.use(express.static("dist"))
 app.use(express.json())
 
 app.get('/api', (_req, res) => {
-  res.send("v0.0.1")
+  res.send("v0.1.1")
 })
 
 app.use('/api', f2pApiProxy)
